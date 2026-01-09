@@ -3,7 +3,7 @@ import MenuItem from './components/MenuItem';
 import useOrder from './hook/useOrder';
 import OrderContents from './components/OrderContents';
 import OrderTotal from './components/OrderTotal';
-import TipPercentageForm from './components/TippercentageForm';
+import TipPercentageForm from './components/TipPercentageForm';
 
 function App() {
   const { order, tip, setTip, addItem, removeItem, placeOrder } = useOrder();
