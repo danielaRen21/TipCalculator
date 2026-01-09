@@ -1,14 +1,17 @@
 import { menuItems } from './data/db';
 import MenuItem from './components/MenuItem';
 import useOrder from './hook/useOrder';
+import OrderContents from './components/OrderContents';
+import OrderTotal from './components/OrderTotal';
+import TipPercentageForm from './components/TippercentageForm';
 
 function App() {
-  const {addItem} = useOrder();
+  const { order, tip, setTip, addItem, removeItem, placeOrder } = useOrder();
   return (
     <>
-      <header className="bg-teal-400 py-5 ">
+      <header className="bg-teal-400 py-5">
         <h1 className="text-4xl text-center font-black">
-          Calculadora de propinas
+          Calculadora de Propinas y Consumos
         </h1>
       </header>
       <div className=" flex justify-content-center">
@@ -23,8 +26,16 @@ function App() {
               </div>
             </div>
           </div>
-          <div>
-            <h2>Consumos</h2>
+          <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-10">
+            {order.length ? (
+              <>
+                <OrderContents order={order} removeItem={removeItem} />
+                <TipPercentageForm setTip={setTip} tip={tip} />
+                <OrderTotal order={order} tip={tip} placeOrder={placeOrder} />
+              </>
+            ) : (
+              <p className="text-center">La orden esta vacia</p>
+            )}
           </div>
         </main>
       </div>
